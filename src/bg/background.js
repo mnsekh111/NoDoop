@@ -12,3 +12,9 @@ chrome.extension.onMessage.addListener(
     sendResponse();
   });
 
+
+
+/*Set a browser action on click listener*/
+chrome.browserAction.onClicked(function(tab){
+
+});
