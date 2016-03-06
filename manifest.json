@@ -20,6 +20,7 @@
     "name": "Close duplicate tabs"
   },
   "permissions": [
+    "processes",
     "notifications",
     "tabs",
     "https://*/*"
