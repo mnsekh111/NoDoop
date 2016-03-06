@@ -25,16 +25,58 @@ chrome.browserAction.onClicked.addListener(function (tab) {
         sendNotification((tabs.length - unique.length) + " tabs closed ");
     });
 
-
+    //closeSameDomain();
 });
 
 
 /*Sending a notification in the content script*/
 function sendNotification(message) {
 
-    chrome.tabs.query({active:true,currentWindow:true},function(tabs){
-        chrome.tabs.sendMessage(tabs[0].id,{type:"notification",msg:message},function(response){});
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {type: "notification", msg: message}, function (response) {
+        });
         console.log("Sending the notification to content script");
     });
 }
+
+function closeSameDomain() {
+    var unique = [];
+
+    /*Asynchronous call to retrieve the tabs opened in this window */
+
+    chrome.tabs.query({currentWindow: true}, function (tabs) {
+        var i, element,domain;
+
+        for (i = 0; i < tabs.length; i++) {
+            element = tabs[i];
+
+            domain = extractDomain(element.url);
+            if (unique.indexOf(domain) == -1)
+                unique.push(domain);
+            else
+                chrome.tabs.remove(element.id, function () {
+                });
+        }
+        sendNotification((tabs.length - unique.length) + " tabs closed ");
+    });
+
+}
+
+
+function extractDomain(url) {
+    var domain;
+    //find & remove protocol (http, ftp, etc.) and get domain
+    if (url.indexOf("://") > -1) {
+        domain = url.split('/')[2];
+    }
+    else {
+        domain = url.split('/')[0];
+    }
+
+    //find & remove port number
+    domain = domain.split(':')[0];
+
+    return domain;
+}
+
 
