@@ -9,6 +9,13 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
+  "content_scripts": [
+    {
+      "matches":["https://*/*"],
+      "css":["lib/android_toast/android_toast.css"],
+      "js":["js/contentscript.js","lib/android_toast/android_toast.js"]
+    }
+  ],
   "background": {
     "scripts": [
       "src/bg/background.js"
@@ -19,8 +26,8 @@
     "default_icon": "icons/icon19.png",
     "name": "Close duplicate tabs"
   },
+
   "permissions": [
-    "processes",
     "notifications",
     "tabs",
     "https://*/*"
