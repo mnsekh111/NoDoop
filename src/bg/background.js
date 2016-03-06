@@ -7,6 +7,22 @@
 
 /*Set a browser action on click listener*/
 chrome.browserAction.onClicked.addListener(function (tab) {
+
+    closeSameDomain();
+});
+
+
+/*Sending a notification in the content script*/
+function sendNotification(message) {
+
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {type: "notification", msg: message}, function (response) {
+        });
+        console.log("Sending the notification to content script");
+    });
+}
+
+function closeDuplicate(){
     var unique = [];
 
     /*Asynchronous call to retrieve the tabs opened in this window */
@@ -25,18 +41,6 @@ chrome.browserAction.onClicked.addListener(function (tab) {
         sendNotification((tabs.length - unique.length) + " tabs closed ");
     });
 
-    //closeSameDomain();
-});
-
-
-/*Sending a notification in the content script*/
-function sendNotification(message) {
-
-    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {type: "notification", msg: message}, function (response) {
-        });
-        console.log("Sending the notification to content script");
-    });
 }
 
 function closeSameDomain() {
