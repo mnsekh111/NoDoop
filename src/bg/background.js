@@ -32,9 +32,9 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 /*Sending a notification in the content script*/
 function sendNotification(message) {
 
-    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {message:message},function(response){
-            console.log(message + " sent successfully");
-        })
+    chrome.tabs.query({active:true,currentWindow:true},function(tabs){
+        chrome.tabs.sendMessage(tabs[0].id,{type:"notification",msg:message},function(response){});
+        console.log("Sending the notification to content script");
     });
 }
+

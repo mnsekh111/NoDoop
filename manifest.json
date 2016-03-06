@@ -11,9 +11,18 @@
   },
   "content_scripts": [
     {
-      "matches":["https://*/*"],
-      "css":["lib/android_toast/android_toast.css"],
-      "js":["js/contentscript.js","lib/android_toast/android_toast.js"]
+      "matches": [
+        "https://*/*",
+        "http://*/*"
+      ],
+      "css": [
+        "lib/toastr/toastr.min.css"
+      ],
+      "js": [
+        "lib/jquery/jquery-2.2.1.min.js",
+        "lib/toastr/toastr.min.js",
+        "js/contentscript.js"
+      ]
     }
   ],
   "background": {
@@ -26,10 +35,11 @@
     "default_icon": "icons/icon19.png",
     "name": "Close duplicate tabs"
   },
-
   "permissions": [
     "notifications",
+    "activeTab",
     "tabs",
-    "https://*/*"
+    "https://*/*",
+    "http://*/*"
   ]
 }

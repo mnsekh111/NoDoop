@@ -3,7 +3,15 @@
  */
 console.log("Content script loaded");
 
-chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
-    console.log(request.message);
-    var toast = new Android_Toast({content:request.message,duration:2000,position:'top'});
+
+chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
+    if(message.type == "notification"){
+        showNotification(message.msg);
+        console.log("Message received "+message.msg);
+    }
 });
+
+
+function showNotification(message) {
+    toastr.info(message);
+}
