@@ -35,6 +35,8 @@
     "default_icon": "icons/icon19.png",
     "name": "Close duplicate tabs"
   },
+  "options_page": "src/options.html",
+
   "permissions": [
     "notifications",
     "activeTab",
