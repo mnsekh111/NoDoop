@@ -7,7 +7,6 @@
 
 /*Set a browser action on click listener*/
 chrome.browserAction.onClicked.addListener(function (tab) {
-
     closeSameDomain();
 });
 
@@ -22,7 +21,7 @@ function sendNotification(message) {
     });
 }
 
-function closeDuplicate(){
+function closeDuplicate() {
     var unique = [];
 
     /*Asynchronous call to retrieve the tabs opened in this window */
@@ -49,7 +48,7 @@ function closeSameDomain() {
     /*Asynchronous call to retrieve the tabs opened in this window */
 
     chrome.tabs.query({currentWindow: true}, function (tabs) {
-        var i, element,domain;
+        var i, element, domain;
 
         for (i = 0; i < tabs.length; i++) {
             element = tabs[i];
