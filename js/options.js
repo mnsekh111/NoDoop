@@ -1,18 +1,26 @@
+var glob_options = {
+        TAB_KEEP: "oldest",
+        SCHEME:"sameurl"
+};
+
 $(document).ready(function () {
         restore_options(function(options){
-                if (options["TAB_KEEP"] == "recent")
+                glob_options = options;
+                if (glob_options["TAB_KEEP"] == "recent")
                                 document.getElementById("recent").checked = true;
+                if (glob_options["SCHEME"] == "samedomain")
+                        document.getElementById("samedomain").checked = true;
         });
         $("#btnSave").click(function () {
-                var options = {
-                        TAB_KEEP: "oldest",
+
+                if (document.getElementById("recent").checked) {
+                        glob_options["TAB_KEEP"] = "recent";
                 }
-                if (document.getElementById("oldest").checked) {
-                        options["TAB_KEEP"] = "oldest";
-                } else {
-                        options["TAB_KEEP"] = "recent";
-                }
-                save_options(options);
+
+                if(document.getElementById("samedomain").checked)
+                        glob_options["SCHEME"] = "samedomain";
+
+                save_options(glob_options);
         });
 });
 
