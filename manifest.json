@@ -16,12 +16,15 @@
         "http://*/*"
       ],
       "css": [
-        "lib/toastr/toastr.min.css"
+        "/lib/toastr/toastr.min.css",
+        "/lib/materialize/css/materialize.css"
       ],
       "js": [
-        "lib/jquery/jquery-2.2.1.min.js",
-        "lib/toastr/toastr.min.js",
-        "js/contentscript.js"
+        "/lib/jquery/jquery-2.2.1.min.js",
+        "/lib/materialize/js/materialize.js",
+        "/lib/toastr/toastr.min.js",
+        "/js/contentscript.js",
+        "/js/gbStorageManager.js"
       ]
     }
   ],

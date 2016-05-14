@@ -3,19 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>NoDoop Options</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="/lib/materialize/css/materialize.css">
+    <script src="/lib/materialize/js/materialize.js"></script>
+    <script src="/lib/jquery/jquery-2.2.1.min.js"></script>
+    <script src="/js/gbStorageManager.js"></script>
+    <style>
+        label {
+            color: white;
+        }
+    </style>
+
 </head>
 <body>
 <div class="row">
-    <div class="col s12 m12 l12 center-align" style="display: inline-block;" >
-        <div class="card blue darken-3" >
+    <div class="col s12 m6 l6 push-m3 push-l3" style="display: inline-block;">
+        <div class="card grey darken-2 white-text hoverable">
             <div class="card-content white-text">
                 <span class="card-title">Options</span>
+                <h5>Which tab to keep ?</h5>
+                <p>
+                    <input name="group1" type="radio" id="oldest" checked/>
+                    <label for="oldest">The oldest</label>
+                    <input name="group1" type="radio" id="recent"/>
+                    <label for="recent">The most recent</label>
+                </p>
+
             </div>
+
+
             <div class="card-action">
-                <a href="#">SAVE</a>
-                <a href="#">DISCARD</a>
+                <a class="waves-effect waves-light btn" onclick="save_options()">Save</a>
             </div>
         </div>
     </div>
