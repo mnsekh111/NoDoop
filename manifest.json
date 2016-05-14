@@ -16,8 +16,7 @@
 				"http://*/*"
 			],
 			"css": [
-				"/lib/toastr/toastr.min.css",
-				"/lib/materialize/css/materialize.css"
+				"/lib/toastr/toastr.min.css"
 			],
 			"js": [
 				"/js/contentscript.js"
