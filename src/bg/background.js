@@ -38,7 +38,9 @@ function closeDuplicate() {
                                 chrome.tabs.remove(element.id, function () {
                                 });
                 }
-                sendNotification((tabs.length - unique.length) + " tabs closed ");
+
+                setTimeout(function(){sendNotification((tabs.length - unique.length) + " tabs closed ")}, 1000);
+
         });
 
 }
@@ -53,7 +55,7 @@ function closeSameDomain() {
 
                 for (i = 0; i < tabs.length; i++) {
                         element = tabs[i];
-
+                        console.log(tabs[i].id + " " + tabs[i].title)
                         domain = extractDomain(element.url);
                         if (unique.indexOf(domain) == -1)
                                 unique.push(domain);
@@ -61,7 +63,8 @@ function closeSameDomain() {
                                 chrome.tabs.remove(element.id, function () {
                                 });
                 }
-                sendNotification((tabs.length - unique.length) + " tabs closed ");
+
+                setTimeout(function(){sendNotification((tabs.length - unique.length) + " tabs closed ")}, 1000);
         });
 
 }
@@ -79,7 +82,6 @@ function extractDomain(url) {
 
         //find & remove port number
         domain = domain.split(':')[0];
-
         return domain;
 }
 
