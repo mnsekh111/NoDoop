@@ -1,50 +1,46 @@
 {
-  "name": "NoDoop",
-  "version": "0.0.1",
-  "manifest_version": 2,
-  "description": "Close duplicate tabs in one click!",
-  "homepage_url": "https://github.com/mnsekh111/NoDoop.git",
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*/*",
-        "http://*/*"
-      ],
-      "css": [
-        "/lib/toastr/toastr.min.css",
-        "/lib/materialize/css/materialize.css"
-      ],
-      "js": [
-        "/lib/jquery/jquery-2.2.1.min.js",
-        "/lib/materialize/js/materialize.js",
-        "/lib/toastr/toastr.min.js",
-        "/js/contentscript.js",
-        "/js/gbStorageManager.js"
-      ]
-    }
-  ],
-  "background": {
-    "scripts": [
-      "src/bg/background.js"
-    ],
-    "persistent": false
-  },
-  "browser_action": {
-    "default_icon": "icons/icon19.png",
-    "name": "Close duplicate tabs"
-  },
-  "options_page": "src/options.html",
-
-  "permissions": [
-    "notifications",
-    "activeTab",
-    "tabs",
-    "https://*/*",
-    "http://*/*"
-  ]
+	"name": "NoDoop",
+	"version": "0.0.1",
+	"manifest_version": 2,
+	"description": "Close duplicate tabs in one click!",
+	"homepage_url": "https://github.com/mnsekh111/NoDoop.git",
+	"icons": {
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://*/*",
+				"http://*/*"
+			],
+			"css": [
+				"/lib/toastr/toastr.min.css",
+				"/lib/materialize/css/materialize.css"
+			],
+			"js": [
+				"/js/contentscript.js"
+			]
+		}
+	],
+	"background": {
+		"scripts": [
+			"src/bg/background.js"
+		],
+		"persistent": false
+	},
+	"browser_action": {
+		"default_icon": "icons/icon19.png",
+		"name": "Close duplicate tabs"
+	},
+	"options_page": "src/options.html",
+	"permissions": [
+		"notifications",
+		"activeTab",
+		"storage",
+		"tabs",
+		"https://*/*",
+		"http://*/*"
+	]
 }
