@@ -19,6 +19,8 @@
 				"/lib/toastr/toastr.min.css"
 			],
 			"js": [
+				"/lib/jquery/jquery-2.2.1.min.js",
+				"/lib/toastr/toastr.min.js",
 				"/js/contentscript.js"
 			]
 		}
