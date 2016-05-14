@@ -7,7 +7,8 @@
  */
 function save_options(options) {
         chrome.storage.sync.set({
-                TAB_KEEP: options["TAB_KEEP"]
+                TAB_KEEP: options["TAB_KEEP"],
+                SCHEME:options["SCHEME"]
         }, function () {
                 // Update status to let user know options were saved.
                 alert("Settings saved")
@@ -19,10 +20,13 @@ function save_options(options) {
 function restore_options(callback) {
         // Use default value color = 'red' and likesColor = true.
         chrome.storage.sync.get({
-                TAB_KEEP: 'oldest'
+                TAB_KEEP: 'oldest',
+                SCHEME:"sameurl"
+
         }, function (items) {
                 var options = {};
                 options["TAB_KEEP"] = items.TAB_KEEP;
+                options["SCHEME"] = items.SCHEME;
                 callback(options);
         });
 }
