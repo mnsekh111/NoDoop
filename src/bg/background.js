@@ -4,7 +4,8 @@
 
 var glob_options = {
         TAB_KEEP: "oldest",
-        SCHEME: "sameurl"
+        SCHEME: "sameurl",
+        REFRESH:true
 };
 
 chrome.browserAction.onClicked.addListener(function (tab) {
@@ -76,7 +77,7 @@ function closeDuplicate() {
                         }
 
                         setTimeout(function () {
-                                sendNotification((tabs.length - unique.length) + " tabs closed ")
+                                sendNotification((tabs.length - Object.keys(unique).length) + " tabs closed ")
                         }, 1000);
 
                 });
@@ -133,7 +134,7 @@ function closeSameDomain() {
                         }
 
                         setTimeout(function () {
-                                sendNotification((tabs.length - unique.length) + " tabs closed ")
+                                sendNotification((tabs.length - Object.keys(unique).length) + " tabs closed ")
                         }, 1000);
 
                 });
