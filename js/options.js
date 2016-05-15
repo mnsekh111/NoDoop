@@ -1,6 +1,7 @@
 var glob_options = {
         TAB_KEEP: "oldest",
-        SCHEME: "sameurl"
+        SCHEME: "sameurl",
+        REFRESH: true
 };
 
 $(document).ready(function () {
@@ -15,6 +16,12 @@ $(document).ready(function () {
                         document.getElementById("samedomain").checked = true;
                 else
                         document.getElementById("sameurl").checked = true;
+
+                if (glob_options["REFRESH"] == true)
+                        document.getElementById("refresh").checked = true;
+                else
+                        document.getElementById("refresh").checked = false;
+
                 sendToBackGround();
         });
         $("#btnSave").click(function () {
@@ -30,6 +37,13 @@ $(document).ready(function () {
                 else {
                         glob_options["SCHEME"] = "sameurl";
                 }
+
+                if (document.getElementById("refresh").checked)
+                        glob_options["REFRESH"] = true;
+                else {
+                        glob_options["REFRESH"] = false;
+                }
+
                 save_options(glob_options, function () {
                         sendToBackGround();
                 });
