@@ -8,7 +8,7 @@ var glob_options = {
 };
 
 chrome.browserAction.onClicked.addListener(function (tab) {
-        console.log(glob_options["SCHEME"]);
+        //console.log(glob_options["SCHEME"]);
         if (glob_options["SCHEME"] == "samedomain")
                 closeSameDomain();
         else
@@ -17,7 +17,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 });
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-        console.log(message["GOPTIONS"]);
+        //console.log(message["GOPTIONS"]);
         glob_options = message["GOPTIONS"];
 });
 
@@ -118,20 +118,16 @@ function closeSameDomain() {
                                 domain = extractDomain(element.url);
                                 if (unique[domain] == undefined) {
                                         unique[domain] = element;
-                                        console.log(element.id + " is inserted");
                                 }
                                 else {
                                         var temp = unique[domain].id;
                                         if (element.id > temp) {
                                                 unique[domain] = element;
-                                                console.log(element.id + " is inserted");
-                                                console.log(temp + " is removed");
                                                 chrome.tabs.remove(temp, function () {
                                                 });
                                         } else {
                                                 chrome.tabs.remove(element.id, function () {
                                                 });
-                                                console.log(element.id + " is removed");
                                         }
                                 }
                         }
