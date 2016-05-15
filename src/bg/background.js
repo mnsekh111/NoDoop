@@ -1,12 +1,14 @@
 // if you checked "fancy-settings" in extensionizr.com, uncomment this lines
 
-// var settings = new Store("settings", {
-//     "sample_setting": "This is how you use Store.js to remember values"
-// });
-
-
 /*Set a browser action on click listener*/
+
+var glob_options = {
+        TAB_KEEP: "oldest",
+        SCHEME: "sameurl"
+};
+
 chrome.browserAction.onClicked.addListener(function (tab) {
+        console.log(glob_options["SCHEME"]);
         if (glob_options["SCHEME"] == "samedomain")
                 closeSameDomain();
         else
@@ -14,6 +16,10 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 
 });
 
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+        console.log(message["GOPTIONS"]);
+        glob_options = message["GOPTIONS"];
+});
 
 /*Sending a notification in the content script*/
 function sendNotification(message) {
@@ -58,9 +64,9 @@ function closeDuplicate() {
                                         unique[element.url] = element;
                                 else {
                                         var temp = unique[element.url].id
-                                        if (element.id < temp) {
+                                        if (element.id > temp) {
                                                 unique[element.url] = element;
-                                                chrome.tabs.remove(temp.id, function () {
+                                                chrome.tabs.remove(temp, function () {
                                                 });
                                         } else {
                                                 chrome.tabs.remove(element.id, function () {
@@ -104,22 +110,28 @@ function closeSameDomain() {
                 });
         } else if (glob_options["TAB_KEEP"] == "recent") {
                 var unique = {}
+
                 chrome.tabs.query({currentWindow: true}, function (tabs) {
                         var i, element, domain;
                         for (i = 0; i < tabs.length; i++) {
                                 element = tabs[i];
                                 domain = extractDomain(element.url);
-                                if (unique[domain] == undefined)
+                                if (unique[domain] == undefined) {
                                         unique[domain] = element;
+                                        console.log(element.id + " is inserted");
+                                }
                                 else {
-                                        var temp = unique[domain].id
-                                        if (element.id < temp) {
+                                        var temp = unique[domain].id;
+                                        if (element.id > temp) {
                                                 unique[domain] = element;
-                                                chrome.tabs.remove(temp.id, function () {
+                                                console.log(element.id + " is inserted");
+                                                console.log(temp + " is removed");
+                                                chrome.tabs.remove(temp, function () {
                                                 });
                                         } else {
                                                 chrome.tabs.remove(element.id, function () {
                                                 });
+                                                console.log(element.id + " is removed");
                                         }
                                 }
                         }
