@@ -3,7 +3,6 @@
  */
 console.log("Content script loaded");
 
-
 chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
     if(message.type == "notification"){
         showNotification(message.msg);

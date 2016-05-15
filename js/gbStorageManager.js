@@ -5,13 +5,12 @@
 /*
  options is of type Object
  */
-function save_options(options) {
+function save_options(options,callback) {
         chrome.storage.sync.set({
                 TAB_KEEP: options["TAB_KEEP"],
                 SCHEME:options["SCHEME"]
-        }, function () {
-                // Update status to let user know options were saved.
-                alert("Settings saved")
+        }, function(){
+                callback();
         });
 }
 
