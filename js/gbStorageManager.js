@@ -8,7 +8,8 @@
 function save_options(options,callback) {
         chrome.storage.sync.set({
                 TAB_KEEP: options["TAB_KEEP"],
-                SCHEME:options["SCHEME"]
+                SCHEME:options["SCHEME"],
+                REFRESH:options["REFRESH"]
         }, function(){
                 callback();
         });
@@ -20,12 +21,14 @@ function restore_options(callback) {
         // Use default value color = 'red' and likesColor = true.
         chrome.storage.sync.get({
                 TAB_KEEP: 'oldest',
-                SCHEME:"sameurl"
+                SCHEME:"sameurl",
+                REFRESH:true
 
         }, function (items) {
                 var options = {};
                 options["TAB_KEEP"] = items.TAB_KEEP;
                 options["SCHEME"] = items.SCHEME;
+                options["REFRESH"]=items.REFRESH;
                 callback(options);
         });
 }
