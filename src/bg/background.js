@@ -5,7 +5,7 @@
 var glob_options = {
         TAB_KEEP: "oldest",
         SCHEME: "sameurl",
-        REFRESH:true
+        REFRESH: true
 };
 
 chrome.browserAction.onClicked.addListener(function (tab) {
@@ -43,8 +43,13 @@ function closeDuplicate() {
 
                         for (i = 0; i < tabs.length; i++) {
                                 element = tabs[i];
-                                if (unique.indexOf(element.url) == -1)
+                                if (unique.indexOf(element.url) == -1) {
                                         unique.push(element.url);
+
+                                        if (glob_options["REFRESH"])
+                                                chrome.tabs.reload(element.id, {bypassCache: false}, function () {
+                                                });
+                                }
                                 else
                                         chrome.tabs.remove(element.id, function () {
                                         });
@@ -61,8 +66,13 @@ function closeDuplicate() {
                         var i, element;
                         for (i = 0; i < tabs.length; i++) {
                                 element = tabs[i];
-                                if (unique[element.url] == undefined)
+                                if (unique[element.url] == undefined) {
                                         unique[element.url] = element;
+
+                                        if (glob_options["REFRESH"])
+                                                chrome.tabs.reload(element.id, {bypassCache: false}, function () {
+                                                });
+                                }
                                 else {
                                         var temp = unique[element.url].id
                                         if (element.id > temp) {
@@ -98,8 +108,13 @@ function closeSameDomain() {
                                 element = tabs[i];
                                 console.log(tabs[i].id + " " + tabs[i].title)
                                 domain = extractDomain(element.url);
-                                if (unique.indexOf(domain) == -1)
+                                if (unique.indexOf(domain) == -1) {
                                         unique.push(domain);
+
+                                        if (glob_options["REFRESH"])
+                                                chrome.tabs.reload(element.id, {bypassCache: false}, function () {
+                                                });
+                                }
                                 else
                                         chrome.tabs.remove(element.id, function () {
                                         });
@@ -119,6 +134,10 @@ function closeSameDomain() {
                                 domain = extractDomain(element.url);
                                 if (unique[domain] == undefined) {
                                         unique[domain] = element;
+
+                                        if (glob_options["REFRESH"])
+                                                chrome.tabs.reload(element.id, {bypassCache: false}, function () {
+                                                });
                                 }
                                 else {
                                         var temp = unique[domain].id;
