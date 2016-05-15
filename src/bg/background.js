@@ -102,6 +102,33 @@ function closeSameDomain() {
                                 sendNotification((tabs.length - unique.length) + " tabs closed ")
                         }, 1000);
                 });
+        } else if (glob_options["TAB_KEEP"] == "recent") {
+                var unique = {}
+                chrome.tabs.query({currentWindow: true}, function (tabs) {
+                        var i, element, domain;
+                        for (i = 0; i < tabs.length; i++) {
+                                element = tabs[i];
+                                domain = extractDomain(element.url);
+                                if (unique[domain] == undefined)
+                                        unique[domain] = element;
+                                else {
+                                        var temp = unique[domain].id
+                                        if (element.id < temp) {
+                                                unique[domain] = element;
+                                                chrome.tabs.remove(temp.id, function () {
+                                                });
+                                        } else {
+                                                chrome.tabs.remove(element.id, function () {
+                                                });
+                                        }
+                                }
+                        }
+
+                        setTimeout(function () {
+                                sendNotification((tabs.length - unique.length) + " tabs closed ")
+                        }, 1000);
+
+                });
         }
 
 }
@@ -109,7 +136,7 @@ function closeSameDomain() {
 
 function extractDomain(url) {
         var domain;
-        //find & remove protocol (http, ftp, etc.) and get domain
+        //find & remove protocol (http, ftp, etc.) aFnd get domain
         if (url.indexOf("://") > -1) {
                 domain = url.split('/')[2];
         }
