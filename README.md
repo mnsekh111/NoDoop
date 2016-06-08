@@ -1,4 +1,5 @@
-# NoDoop
+# NoDoop 
+`(Extension for chrome)`
 Close or Merge Duplicate tabs and clear memory in one Click
 
 #####Use the options page to change the duplicate scheme
