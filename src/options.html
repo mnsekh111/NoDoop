@@ -1,54 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>NoDoop Options</title>
-	<link rel="stylesheet" href="/lib/materialize/css/materialize.css">
-	<script src="/lib/jquery/jquery-2.2.1.min.js"></script>
-	<script src="/js/gbStorageManager.js"></script>
-	<script src="/js/options.js"></script>
-	<style>
-		label {
-			color: white;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <title>NoDoop Options</title>
+    <link rel="stylesheet" href="/lib/materialize/css/materialize.css">
+    <script src="/lib/jquery/jquery-2.2.1.min.js"></script>
+    <script src="/js/gbStorageManager.js"></script>
+    <script src="/js/options.js"></script>
+    <style>
+        label {
+            color: white;
+        }
+    </style>
 
 </head>
 <body>
 <div class="row">
-	<div class="col s12 m6 l6 push-m3 push-l3" style="display: inline-block;">
-		<div class="card grey darken-2 white-text hoverable">
-			<div class="card-content white-text">
-				<span class="card-title">Options</span>
-				<h5>Duplicate scheme</h5>
-				<p>
-					<input name="group" type="radio" id="sameurl" />
-					<label for="sameurl">Close tabs with the same url</label>
-					<input name="group" type="radio" id="samedomain"/>
-					<label for="samedomain">Close tabs with the same domain</label>
-				</p>
-				<hr>
-				<h5>Which tab to keep ?</h5>
-				<p>
-					<input name="group1" type="radio" id="oldest" />
-					<label for="oldest">The oldest</label>
-					<input name="group1" type="radio" id="recent"/>
-					<label for="recent">The most recent</label>
-				</p>
-				<hr>
-				<p>
-					<input type="checkbox" id="refresh" />
-					<label for="refresh">Refresh the remaining tab</label>
-				</p>
+    <div class="col s12 m6 l6 push-m3 push-l3" style="display: inline-block;">
+        <div class="card grey darken-2 white-text hoverable">
+            <div class="card-content white-text">
+                <span class="card-title">Options</span>
+                <h5>Duplicate scheme</h5>
+                <p>
+                    <input name="group" type="radio" id="sameurl"/>
+                    <label for="sameurl">Close tabs with the same url</label>
+                    <input name="group" type="radio" id="samedomain"/>
+                    <label for="samedomain">Close tabs with the same domain</label>
+                </p>
+                <hr>
+                <h5>Which tab to keep ?</h5>
+                <p>
+                    <input name="group1" type="radio" id="oldest"/>
+                    <label for="oldest">The oldest</label>
+                    <input name="group1" type="radio" id="recent"/>
+                    <label for="recent">The most recent</label>
+                </p>
+                <hr>
+                <p>
+                    <input type="checkbox" id="refresh"/>
+                    <label for="refresh">Refresh the remaining tab</label>
+                </p>
 
-			</div>
+            </div>
 
 
-			<div class="card-action">
-				<a class="waves-effect waves-light btn" id="btnSave">Save</a>
-			</div>
-		</div>
-	</div>
+            <div class="card-action">
+                <a class="waves-effect waves-light btn" id="btnSave">Save</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row" id="status">
+    <div class="col s12 m6 l6 push-m3 push-l3" style="display: inline-block;">
+        <div class="card grey darken-2 white-text hoverable">
+            <div class="card-content white-text">
+                <span class="card-title">Options saved successfully.</span>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

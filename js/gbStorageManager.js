@@ -22,7 +22,7 @@ function restore_options(callback) {
         chrome.storage.sync.get({
                 TAB_KEEP: 'oldest',
                 SCHEME:"sameurl",
-                REFRESH:true
+                REFRESH:false
 
         }, function (items) {
                 var options = {};
